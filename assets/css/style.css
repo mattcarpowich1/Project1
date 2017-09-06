@@ -1,0 +1,165 @@
+body {
+  background-image: url("../images/concert.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+nav {
+  background-color: white;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0px 5px 19px 0px rgba(0,0,0,0.6);
+}
+
+#nav_container {
+  margin: 0 auto;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav_logo_name_area {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#nav_logo_name_area img {
+  margin-right: 10px;
+}
+
+#nav_logo_name_area h2 {
+  margin-bottom: 0;
+  font-size: 30px;
+  line-height: 1;
+}
+
+#app_link {
+  color: #212529;
+  text-decoration: none;
+}
+
+#app_link:hover {
+  color: initial;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#nav_search_area {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-artists {
+  width: 360px;
+}
+
+#search_form {
+  width: 100%;
+  display: flex;
+}
+
+#artist_search {
+  width: 100%;
+}
+
+.btn-secondary {
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+#search_icon {
+  color: #777;
+}
+
+#nav_links_area {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#nav_links_area a {
+  margin-right: 40px;
+}
+
+#info {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 180px;
+}
+
+#info h1, #info h3 {
+  color: white;
+}
+
+#bio {
+  display: none;
+  background-color: white;
+  margin-top: 10vh;
+  padding: 30px;
+  box-shadow: 0px 5px 19px 0px rgba(0,0,0,0.6);
+  color: black;
+  width: 93%;
+}
+
+#bio h3 {
+  color: black;
+  text-align: center;
+}
+
+#bio-img {
+  height: auto;
+  width: 100%;
+}
+
+#bio-name {
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+}
+
+#bio-text {
+  border-right: 1px solid #ccc;
+  padding-right: 30px;
+  height: 100%;
+}
+
+#bio-text p a {
+  display: none;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+#buttons img {
+  height: 48px;
+  width: 48px;
+}
+
+#buttons a {
+  margin-bottom: 15px;
+}
+
+#buttons small {
+  white-space: nowrap;
+}
+
+h2#bio-name {
+  margin-bottom: 0;
+}
