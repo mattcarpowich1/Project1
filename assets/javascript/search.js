@@ -6,6 +6,8 @@ $(function() {
 
       e.preventDefault();
 
+      $("#artist_albums").empty();
+
       var name = $("#search-input").val().trim();
       var api_key = "263e9002f2fe7d0f5701f46e4c576782";
       var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
@@ -26,7 +28,7 @@ $(function() {
           var artistImageURL = artist.image[4]["#text"];
           console.log(artistImageURL);
 
-          // $("#bio").show();
+          $("#searchResult").show();
 
           $("#artist_bio h3").text(artistName);
           $("#artist_image img").attr("src", artistImageURL);
@@ -36,6 +38,48 @@ $(function() {
 
         }
         
+      });
+
+      var queryURL2 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + 
+      name + "&api_key=" + api_key + "&limit=8&format=json";
+
+      $.ajax({
+        url: queryURL2,
+        method: "GET"
+      }).done(function(response) {
+        if (response.error) {
+          console.log("No results returned");
+        } else {
+
+          //array of albums
+          var albums = response.topalbums.album;
+
+          console.log(albums);
+
+          for (var i = 0; i < albums.length; i++) {
+
+            if (albums[i].image[2]["#text"] === "") {
+              continue;
+            }
+
+            var $imgHolder = $("<div>");
+            $imgHolder.addClass("img-holder");
+
+            var $albumImg = $("<img>");
+            $albumImg.addClass("album-img");
+            $albumImg.attr("src", albums[i].image[2]["#text"]);
+
+            var $albumTitle = $("<small>");
+            $albumTitle.addClass("album-title");
+            $albumTitle.text(albums[i].name);
+
+            $imgHolder.append($albumImg).append($albumTitle);
+
+            $("#artist_albums").append($imgHolder);
+          } 
+
+        }
+
       });
 
     }); 

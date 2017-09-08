@@ -1,5 +1,5 @@
 body {
-  background-image: url("../images/concert.jpg");
+  background-image: url("https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
   background-size: cover;
   min-height: 100vh;
 }
@@ -76,6 +76,12 @@ nav {
   border: 1px solid #ccc;
 }
 
+#submit:hover {
+  background-color: initial;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
 #search_icon {
   color: #777;
 }
@@ -97,6 +103,10 @@ nav {
   text-align: center;
   margin: 0 auto;
   margin-top: 120px;
+  background-color: black;
+  opacity: .75;
+  padding: 40px 15px 40px 15px;
+  border-radius: 3px;
 }
 
 #info h1, #info h3 {
@@ -104,11 +114,14 @@ nav {
 }
 
 #searchResult {
-  width: 80%;
-  background-color: white;
+  display: none;
+  background-color: black;
+  color: white;
   margin-top: 40px;
-  padding: 15px;
+  padding: 30px;
   margin-bottom: 40px;
+  border-radius: 3px;
+  opacity: .9;
 }
 
 #artist_image {
@@ -124,4 +137,37 @@ nav {
 
 #artist_bio p a {
   display: none;
+}
+
+#artist_albums {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#album_section h5 {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.img-holder {
+  width: 45%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album-img {
+  width: 100%;
+  height: auto;
+}
+
+.album-title {
+  text-align: center;
+  margin-top: 5px;
 }
