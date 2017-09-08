@@ -96,70 +96,32 @@ nav {
   display: block;
   text-align: center;
   margin: 0 auto;
-  margin-top: 180px;
+  margin-top: 120px;
 }
 
 #info h1, #info h3 {
   color: white;
 }
 
-#bio {
-  display: none;
+#searchResult {
+  width: 80%;
   background-color: white;
-  margin-top: 10vh;
-  padding: 30px;
-  box-shadow: 0px 5px 19px 0px rgba(0,0,0,0.6);
-  color: black;
-  width: 93%;
+  margin-top: 40px;
+  padding: 15px;
+  margin-bottom: 40px;
 }
 
-#bio h3 {
-  color: black;
-  text-align: center;
-}
-
-#bio-img {
-  height: auto;
-  width: 100%;
-}
-
-#bio-name {
-  text-align: center;
-  margin-top: 15px;
-  color: black;
-}
-
-#bio-text {
-  border-right: 1px solid #ccc;
-  padding-right: 30px;
-  height: 100%;
-}
-
-#bio-text p a {
-  display: none;
-}
-
-#buttons {
+#artist_image {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  height: 100%;
 }
 
-#buttons img {
-  height: 48px;
-  width: 48px;
-}
-
-#buttons a {
+#artist_image img {
+  width: 100%;
   margin-bottom: 15px;
 }
 
-#buttons small {
-  white-space: nowrap;
-}
-
-h2#bio-name {
-  margin-bottom: 0;
+#artist_bio p a {
+  display: none;
 }

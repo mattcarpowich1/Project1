@@ -23,13 +23,14 @@ $(function() {
           var artist = response.artist;
           var artistName = artist.name;
           var artistBio = artist.bio.summary;
-          var artistImageURL = artist.image[3]["#text"];
+          var artistImageURL = artist.image[4]["#text"];
+          console.log(artistImageURL);
 
-          $("#bio").show();
+          // $("#bio").show();
 
-          $("#bio-name").text(artistName);
-          $("#bio-img").attr("src", artistImageURL);
-          $("#bio-text p").html(artistBio);
+          $("#artist_bio h3").text(artistName);
+          $("#artist_image img").attr("src", artistImageURL);
+          $("#artist_bio p").html(artistBio);
 
           $("#search-input").val("");
 
