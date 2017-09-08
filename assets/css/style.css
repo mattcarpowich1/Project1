@@ -103,8 +103,7 @@ nav {
   text-align: center;
   margin: 0 auto;
   margin-top: 120px;
-  background-color: black;
-  opacity: .75;
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 40px 15px 40px 15px;
   border-radius: 3px;
 }
@@ -115,13 +114,13 @@ nav {
 
 #searchResult {
   display: none;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   margin-top: 40px;
   padding: 30px;
   margin-bottom: 40px;
   border-radius: 3px;
-  opacity: .9;
+  /*opacity: .9;*/
 }
 
 #artist_image {
@@ -133,6 +132,7 @@ nav {
 #artist_image img {
   width: 100%;
   margin-bottom: 15px;
+  opacity: 1;
 }
 
 #artist_bio p a {

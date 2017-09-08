@@ -6,8 +6,6 @@ $(function() {
 
       e.preventDefault();
 
-      $("#artist_albums").empty();
-
       var name = $("#search-input").val().trim();
       var api_key = "263e9002f2fe7d0f5701f46e4c576782";
       var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
@@ -50,6 +48,8 @@ $(function() {
         if (response.error) {
           console.log("No results returned");
         } else {
+
+          $("#artist_albums").empty();
 
           //array of albums
           var albums = response.topalbums.album;
