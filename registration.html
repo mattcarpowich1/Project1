@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+     <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <style>
       div.social {
         padding: 10px 20px;
@@ -53,116 +53,62 @@
         <div id="nav_links_area">
           <span id="current-user"></span>
           <div></div>
-          <span id="topCornerButton"><a href="authentication.html">Log In</a></span>
+          <button class="btn btn-primary" id="sign-out" type="button">Log Out</button>
         </div>
 
       </div>
     </nav>
 
-    <div id="info" class="container">
-      <h1>Find your favorite music artist.</h1> <br>
-      <h3>Upcoming concerts, bio, latest releases, top songs and more.</h3>
-    </div>
+    <div class="container">
 
+    <br>
 
-    <div id="searchResult" class="container">
-
-      <div class="row clearfix">
-
-        <div class="col-lg-3 order-lg-0 order-md-0 order-sm-2">
-          
-          <div id="social_media_links">
-            <!-- add social media links here -->
-            <div class="social" id="twitter">
-              <icon>
-              <a href="https://twitter.com/">TWITTER</a>
-            </div>
-            
-            <div class="social" id="instagram">
-              <icon>
-              <a href="https://instagram.com/">INSTAGRAM</a>
-            </div>
-            
-            <div class="social" id="facebook">
-              <icon>
-              <a href="https://facebook.com/">FACEBOOK</a>
-            </div>
-            
-            <div class="social" id="tumblr">
-              <icon>
-              <a href="https://wwww.twitter.com/">TUMBLR</a>
-            </div>
+    <!-- <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Current User</h3>
+          </div>
+          <div id="current-user" class="panel-body">
             
           </div>
+        </div>
+      </div>
+    </div> -->
 
-          <div id="top-songs" style="border: 1px solid grey">
-            <h5>Top Songs</h5>
-              <div id="songs-list">
-                
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Create User</h3>
+          </div>
+          <div class="panel-body">
+            <form id="log-in-form">
+              <div class="form-group">
+                <label for="user-name">Name</label>
+                <input class="form-control" id="txtEmail" type="email" placeholder="email">
               </div>
-          </div>
-
-          <div id="awards" style="border: 1px solid grey">
-            <h5>Awards</h5>
-            <ul>
-              <li>best song 2008</li>
-              <li>best band 2005</li>
-              <li>best album 2010</li>
-              <li>best song 2006</li>
-            </ul>
-          </div>
-
-          <div id="upcoming_events">
-            <!-- add upcoming events here -->
-          </div>
-
-        </div>
-
-        <div class="col-lg-5 order-lg-2 order-md-0 order-sm-0">
-          
-          <div id="artist_image">
-            <img class="img-fluid" src="https://lastfm-img2.akamaized.net/i/u/300x300/1d1039bd9a3427ad45cdd195d4d4d05f.png">
-          </div>
-
-          <div id="artist_bio">
-            <!-- add bio here -->
-              <h3></h3>
-              <p></p>
-          </div>
-
-        </div>
-
-        <div class="col-lg-4 order-9">
-          <div id="album_section">
-            <h5>Top Albums</h5>
-            <div id="artist_albums">
-      
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-lg-8">
-          <div id="events" style="border: 1px solid grey">
-            <h4>Upcoming events</h4>
-            <ul>
-              <li>Chicago</li>
-              <li>Boston</li>
-              <li>New York</li>
-              <li>Toronto </li>
-            </ul>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="txtPassword" type="password">
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input class="form-control" id="confirmPassword" type="password">
+              </div>
+              <button class="btn btn-primary" id="sign-up" type="button">Sign Up</button>
+            </form>
           </div>
         </div>
       </div>
-    
+
     </div>
+
+  </div>
 
 
 
     <script type="text/javascript" src="assets/javascript/search.js"></script>
-    <!-- Walden script -->
     <script src="assets/javascript/authentication.js"></script>
   </body>
 </html>
