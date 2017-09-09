@@ -34,6 +34,21 @@ $(function() {
 
           $("#search-input").val("");
 
+          $(".facebook").attr("href", "https://facebook.com/" + name.toUpperCase());
+          $("#facebook").append("<span>FACEBOOK/" + name.toUpperCase() + "</span>");
+
+          $(".instagram").attr("href", "https://instagram.com/" + name.toUpperCase());
+          $("#instagram").append("<span>INSTAGRAM/" + name.toUpperCase() + "</span>");
+
+          $(".twitter").attr("href", "https://twitter.com/" + name.toUpperCase());
+          $("#twitter").append("<span>TWITTER/" + name.toUpperCase() + "</span>");
+
+          $(".tumblr").attr("href", "https://tumblr.com/" + name.toUpperCase());
+          $("#tumblr").append("<span>TUMBLR/" + name.toUpperCase() + "</span>");
+
+
+
+
         }
         
       });

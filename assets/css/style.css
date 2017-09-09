@@ -186,7 +186,37 @@ div#top-songs {
   background-color: rgba(19, 18, 15, 0.41);
 }
 
-.social a {
-  font-size: 14px;
+div.social {
   color: white;
 }
+
+div i .fa {
+  font-size: 24px;
+  font-weight: 700px;
+}
+
+div.social span {
+  font-family: "Arial", sans-serif;
+  font-size: 10px;
+  padding-left: 30px;
+}
+
+div.social {
+        padding: 10px 20px;
+        margin-bottom: 5px;
+        background-color: rgba(52, 111, 169, 0.48)
+
+}
+
+div#top-songs {
+  margin: 20px 0;
+}
+
+div #events, #awards, #top-songs {
+  padding: 15px;
+}
+
+
+
+
+
