@@ -222,3 +222,19 @@ div#top-songs {
     margin-right: 2%;
   }
 }
+
+@media screen and (max-width: 575px) {
+  
+  .container {
+    width: 95%;
+  }
+
+  #app_link {
+    display: none;
+  }
+
+  #nav_links_area a {
+    margin-right: 10%;
+  }
+
+}
