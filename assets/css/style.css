@@ -213,7 +213,6 @@ div.social {
   color: white;
 }
 
-<<<<<<< HEAD
 div i .fa {
   font-size: 24px;
   font-weight: 700px;
@@ -238,4 +237,53 @@ div#top-songs {
 
 div #events, #awards, #top-songs {
   padding: 15px;
+}
+
+#awards {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1199px) {
+  #artist_bio p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+
+  #artist_albums {
+    justify-content: flex-start;
+  }
+
+  #artist_bio p {
+    font-size: 1rem;
+  }
+
+  .img-holder {
+    width: 32%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-holder:nth-child(3n + 1), .img-holder:nth-child(3n + 2) {
+    margin-right: 2%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  
+  .container {
+    width: 95%;
+  }
+
+  #app_link {
+    display: none;
+  }
+
+  #nav_links_area a {
+    margin-right: 10%;
+  }
+
 }
