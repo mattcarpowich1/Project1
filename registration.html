@@ -39,21 +39,21 @@
 
         <div id="nav_search_area">
 
-          <div class="input-group search-artists">
+          <!-- <div class="input-group search-artists">
             <form id="search_form">
-              <input id="search-input" name="search-input" type="text" class="form-control" placeholder="Search Artists...">
+              <input id="search-input" name="search-input" type="text" class="form-control" placeholder="Search Artists on the Main Page">
               <span class="input-group-btn">
                 <button id="submit" class="btn btn-secondary" type="submit"><i id="search_icon" class="fa fa-search" aria-hidden="true"></i></button>
               </span>
             </form>
-          </div>
+          </div> -->
 
         </div>
 
         <div id="nav_links_area">
           <span id="current-user"></span>
-          <div></div>
-          <button class="btn btn-primary" id="sign-out" type="button">Log Out</button>
+         <!--  <div></div>
+          <button class="btn btn-primary" id="sign-out" type="button">Log Out</button> -->
         </div>
 
       </div>
@@ -85,16 +85,13 @@
           <div class="panel-body">
             <form id="log-in-form">
               <div class="form-group">
-                <label for="user-name">Name</label>
-                <input class="form-control" id="txtEmail" type="email" placeholder="email">
+                <label for="email">Email</label>
+                <input class="form-control" id="txtEmail" type="email">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
                 <input class="form-control" id="txtPassword" type="password">
-              </div>
-              <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input class="form-control" id="confirmPassword" type="password">
+                <span id="error"></span>
               </div>
               <button class="btn btn-primary" id="sign-up" type="button">Sign Up</button>
             </form>

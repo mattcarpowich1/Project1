@@ -23,9 +23,6 @@ $("#sign-in").on("click", function(event) {
   var email = txtEmail.val();
   var pass = txtPassword.val();
 
-  console.log(email);
-  console.log(pass);
-
   var auth = firebase.auth();
   // Sign in
   var promise = auth.signInWithEmailAndPassword(email, pass).catch(function(error) {
@@ -44,18 +41,33 @@ $("#sign-in").on("click", function(event) {
 $("#sign-up").on("click", function(event) {
   event.preventDefault();
   //get email and pass
-  //TODO: Check for real emails
   var email = txtEmail.val();
   var pass = txtPassword.val();
+
   var auth = firebase.auth();
+
+  //validates EMAIL input
+  var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var is_email=re.test(email);
+  if (is_email) {
+    true;
+    console.log("loss");
+  } else {
+    $("#error").text("A valid email address is required");
+    console.log("win");
+  }
+
   // Sign in
   var promise = auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
   });
+
+  //clear input fields
   $("#txtEmail").val("");
   $("#txtPassword").val("");
+
 });
 
 //When there is a User logged in this handles sign out
@@ -68,10 +80,13 @@ $("#topCornerButton").on("click", "#sign-out", function(event) {
 //TODO: capture Users search input and push it to users artist property
 $("#add").on("click", function(event) {
   var user = firebase.auth().currentUser;
-  console.log(user);
+  // console.log(user);
+  var artistQ = $("#search-input").val();
+  console.log(artistQ);
   firebase.database().ref('users/' + user.uid).set({
-    artist: 'bach'
+    artist: artistQ
   });
+  console.log("add button");
 });
 
 //real time listener for if there is a change in User
@@ -82,7 +97,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     $("#topCornerButton").html("<a href='' id='sign-out'>Log Out</a>");
   } else {
     console.log("not logged in")
-    $("#current-user").text("No User");
+    $("#current-user").text("");
     $("#sign-out").addClass('hide');
   }
 });
