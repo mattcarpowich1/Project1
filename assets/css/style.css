@@ -110,10 +110,9 @@ nav {
   display: block;
   text-align: center;
   margin: 0 auto;
-  margin-top: 120px;
-  background-color: rgba(37, 38, 36, 0.75);
-  padding: 40px 15px 40px 15px;
-  border-radius: 3px;
+  margin-top: 40px;
+  background-color: rgba(8, 9, 14, 0.9);
+  padding: 60px 15px 60px 15px;
   -webkit-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
   -moz-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
   box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
@@ -125,12 +124,11 @@ nav {
 
 #searchResult {
   display: none;
-  background-color: rgba(37, 38, 36, 0.75);
+  background-color: rgba(8, 9, 14, 0.9);
   color: white;
   margin-top: 40px;
   padding: 30px;
   margin-bottom: 40px;
-  border-radius: 3px;
   -webkit-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
   -moz-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
   box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
@@ -148,8 +146,13 @@ nav {
   opacity: 1;
 }
 
+#artist_bio h3 {
+  font-size: 2.25rem;
+}
+
 #artist_bio p {
   text-align: justify;
+  font-size: 1.15rem;
 }
 
 #artist_bio p a {
@@ -174,6 +177,7 @@ nav {
   padding: 0;
   margin: 0;
   line-height: 1;
+  color: white;
 }
 
 .img-holder {
@@ -214,10 +218,20 @@ div#top-songs {
   margin-bottom: 15px;
 }
 
+@media screen and (max-width: 1199px) {
+  #artist_bio p {
+    font-size: 1rem;
+  }
+}
+
 @media screen and (max-width: 991px) {
 
   #artist_albums {
     justify-content: flex-start;
+  }
+
+  #artist_bio p {
+    font-size: 1rem;
   }
 
   .img-holder {
