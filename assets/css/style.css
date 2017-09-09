@@ -244,6 +244,10 @@ div#top-songs {
   cursor: pointer;
 }
 
+ul {
+  margin-bottom: 0;
+}
+
 div #events, #awards, #top-songs {
   padding: 15px;
 }
@@ -254,7 +258,7 @@ div #events, #awards, #top-songs {
 
 @media screen and (max-width: 1199px) {
   #artist_bio p {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 }
 
