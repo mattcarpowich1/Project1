@@ -69,6 +69,8 @@ $(function() {
           //array of albums
           var albums = response.topalbums.album;
 
+          console.log(albums);
+
           for (var i = 0; i < albums.length; i++) {
 
             if (albums[i].image[2]["#text"] === "") {
@@ -123,6 +125,65 @@ $(function() {
         }
         
       });
+
+
+// my code begins here
+       
+      var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
+      var replacedName = name.split(' ').join('-');
+      var artistId = '';
+      console.log("name: " + replacedName);
+      // Ajax call to get Artist ID
+      var eventsUrlByArtist = "http://api.jambase.com/artists?name=" + name + "&page=0&api_key=" + eventsAPI;
+      $.ajax({
+       url: eventsUrlByArtist,
+       method: "GET"
+      }).done(function(response) {
+       artistId = response.Artists[0].Id;
+
+      // Ajax call to get events:
+      var eventsURL = "http://api.jambase.com/events?artistId=" + artistId + "&api_key=" + eventsAPI;
+      console.log(eventsURL);
+      $.ajax({
+         url: eventsURL,
+         method: "GET"
+      }).done(function(response) {
+         if (response.error) {
+             $("#eventItems").html("No Event information");
+             console.log("No upcoming events to show");
+         } else {
+             $("#eventItems").empty();
+             console.log(response);
+             var allEvents = response.Events;
+             console.log("all events" + allEvents);
+             var numEvents = allEvents.length;
+
+             if (allEvents.length == 0) {
+               $("#eventItems").html("No Upcoming Events to Show");
+             } else {
+               var indEventName = '';
+               var indEventDateTime = '';
+               var indEventAddress = '';
+               var indEventTicketURL = '';
+
+               for (index = 0; index < numEvents; index++) {
+                 indEventName = response.Events[index].Venue.Name;
+                 indEventDateTime = response.Events[index].Date;
+                 indEventAddress = response.Events[index].Venue.Address;
+                 indEventTicketURL = response.Events[index].TicketUrl;
+                 console.log("name" + indEventName);
+                 console.log("date " + indEventDateTime);
+                 console.log("address" + indEventAddress);
+                 console.log("URL" + indEventTicketURL);
+                 $("#eventItems").append("<ul><li>Event Name: " + indEventName + "</li><li>Event Date & Time: " + indEventDateTime + "</li><li>Event Address: " + indEventAddress + "</li><li><a href='" + indEventTicketURL + "'>Click Here to Buy Your Ticket Now!</a></li></ul>");
+               };
+             };
+            };
+         });
+
+      });
+
+// my ajax call ends here
 
 
     }); 
