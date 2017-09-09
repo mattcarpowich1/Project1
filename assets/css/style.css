@@ -149,7 +149,7 @@ nav {
 #album_section {
   border: 1px solid grey;
   padding: 10px;
-  background-color: rgba(19, 18, 15, 0.61);
+  /*background-color: rgba(19, 18, 15, 0.61);*/
 }
 
 #artist_albums {
@@ -168,7 +168,7 @@ nav {
 }
 
 .img-holder {
-  width: 45%;
+  width: 48%;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
