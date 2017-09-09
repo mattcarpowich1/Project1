@@ -50,11 +50,8 @@ $(function() {
         } else {
 
           $("#artist_albums").empty();
-
           //array of albums
           var albums = response.topalbums.album;
-
-          console.log(albums);
 
           for (var i = 0; i < albums.length; i++) {
 
@@ -81,6 +78,33 @@ $(function() {
         }
 
       });
+
+      var queryURL3 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=" +
+        name + "&limit=10&api_key=" + api_key + "&format=json&autocorrect=1";
+
+      $.ajax({ 
+        url: queryURL3, 
+        method: "GET"
+      }).done(function(response) { 
+          if (response.error) {
+            console.log("No results returned");
+          } else {
+            
+            $("#songs-list").empty();
+
+            var songs = response.toptracks.track;
+
+            for (var i=0; i < songs.length; i++) {
+
+              var $songTitle = $("<h6>").addClass("song");
+              $songTitle.text(songs[i].name);
+              $("#songs-list").append($songTitle);
+
+            }
+        }
+        
+      });
+
 
     }); 
 
