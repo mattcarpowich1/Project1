@@ -160,7 +160,7 @@ nav {
 }
 
 #album_section {
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
 }
 
 #artist_albums {
@@ -231,6 +231,17 @@ div.social {
 
 div#top-songs {
   margin: 20px 0;
+}
+
+#songs-list a {
+  font-size: 12px;
+  color: rgba(203, 226, 249, 1);
+  font-weight: 300;
+}
+
+#songs-list a:hover {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 div #events, #awards, #top-songs {

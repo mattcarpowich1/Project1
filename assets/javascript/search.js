@@ -19,6 +19,10 @@ $(function() {
           console.log("No results returned");
         } else {
           $("#info").hide();
+          $("#facebook").empty();
+          $("#instagram").empty();
+          $("#twitter").empty();
+          $("#tumblr").empty();
 
           var artist = response.artist;
           var artistName = artist.name;
@@ -46,15 +50,12 @@ $(function() {
           $(".tumblr").attr("href", "https://tumblr.com/" + name.toUpperCase());
           $("#tumblr").append("<span>TUMBLR/" + name.toUpperCase() + "</span>");
 
-
-
-
         }
         
       });
 
       var queryURL2 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + 
-      name + "&api_key=" + api_key + "&limit=8&format=json";
+      name + "&api_key=" + api_key + "&limit=10&format=json";
 
       $.ajax({
         url: queryURL2,
@@ -111,9 +112,12 @@ $(function() {
 
             for (var i=0; i < songs.length; i++) {
 
-              var $songTitle = $("<h6>").addClass("song");
+              var $songTitle = $("<a href=" + songs[i].url + "><h6>").addClass("song");
+
+              var $listItem = $("<li>").append($songTitle);
+
               $songTitle.text(songs[i].name);
-              $("#songs-list").append($songTitle);
+              $("#songs-list").append($listItem);
 
             }
         }
