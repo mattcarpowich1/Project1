@@ -23,11 +23,22 @@ var artistList = {
     this.updateHTML();
   },
   deleteLI: function (artist) {
-    for (var i = 0; i < artistList.list; i++) {
-      if (artist == artistList.list[i]) {
-        this.list.splice(i, 1);
-      }
+    console.log(artist);
+    var index = artistList.list.indexOf(artist);
+
+    console.log(artistList.list);
+    
+    if(index != -1) {
+      artistList.list.splice(index, 1);
     }
+
+    console.log(artistList.list);
+
+    // for (var i = 0; i < artistList.list; i++) {
+    //   if (artist == artistList.list[i]) {
+    //     this.list.splice(i, 1);
+    //   }
+    // }
     this.updateHTML();
   },
   toString: function () {
@@ -115,11 +126,15 @@ $("#add").on("click", function(event) {
   var user = firebase.auth().currentUser;
 
   if (window.artistName) {
-    artistList.addToList(window.artistName);
+    
+    if(artistList.list.indexOf(window.artistName) === -1) {
 
-    firebase.database().ref('users/' + user.uid).set({
-      artist: artistList.toString()
-    });
+      artistList.addToList(window.artistName);
+
+      firebase.database().ref('users/' + user.uid).set({
+        artist: artistList.toString()
+      });
+    }
   }
 });
 
