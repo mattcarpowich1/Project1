@@ -55,7 +55,7 @@ $(function() {
       });
 
       var queryURL2 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + 
-      name + "&api_key=" + api_key + "&limit=10&format=json";
+      name + "&api_key=" + api_key + "&limit=8&format=json";
 
       $.ajax({
         url: queryURL2,
