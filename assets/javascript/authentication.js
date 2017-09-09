@@ -16,6 +16,39 @@ var database = firebase.database();
 var txtEmail = $("#txtEmail");
 var txtPassword = $("#txtPassword");
 
+var artistList = {
+  list: [],
+  addToList: function (artist) {
+    this.list.push(artist);
+    this.updateHTML();
+  },
+  deleteLI: function (artist) {
+    for (var i = 0; i < artistList.list; i++) {
+      if (artist == artistList.list[i]) {
+        this.list.splice(i, 1);
+      }
+    }
+    this.updateHTML();
+  },
+  toString: function () {
+    return this.list.map(encodeURIComponent).join(',');
+  },
+  updateList: function (string) {
+    this.list = string.split(',').map(decodeURIComponent);
+    this.updateHTML();
+  },
+  toHTML: function () {
+    return (
+      this.list.length
+        ? ('<li>' + this.list.join('</li><li>') + '</li>')
+        : ''
+    );
+  },
+  updateHTML: function () {
+    $('#current-user').html('<ul>' + this.toHTML() + '</ul>');
+  }
+};
+
 //sign in event
 $("#sign-in").on("click", function(event) {
   event.preventDefault();
@@ -80,14 +113,26 @@ $("#topCornerButton").on("click", "#sign-out", function(event) {
 //TODO: capture Users search input and push it to users artist property
 $("#add").on("click", function(event) {
   var user = firebase.auth().currentUser;
-  // console.log(user);
-  var artistQ = $("#search-input").val();
-  console.log(artistQ);
-  firebase.database().ref('users/' + user.uid).set({
-    artist: artistQ
-  });
-  console.log("add button");
+
+  if (window.artistName) {
+    artistList.addToList(window.artistName);
+
+    firebase.database().ref('users/' + user.uid).set({
+      artist: artistList.toString()
+    });
+  }
 });
+
+$("#delete").on("click", function(event) {
+  var user = firebase.auth().currentUser;
+
+  artistList.deleteLI(window.artistName);
+
+  firebase.database().ref('users/' + user.uid).set({
+    artist: artistList.toString()
+  });
+  console.log("delete");
+})
 
 //real time listener for if there is a change in User
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
@@ -95,14 +140,20 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     console.log(firebaseUser.email);
     $("#current-user").text(firebaseUser.email);
     $("#topCornerButton").html("<a href='' id='sign-out'>Log Out</a>");
+
+    var user = firebase.auth().currentUser;
+
+    firebase.database().ref('users/' + user.uid).on("value", function(snapshot) {
+      artistList.updateList(snapshot.val().artist);
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   } else {
     console.log("not logged in")
     $("#current-user").text("");
     $("#sign-out").addClass('hide');
   }
 });
-
-
 
 
 
