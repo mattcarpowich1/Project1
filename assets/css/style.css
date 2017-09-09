@@ -120,7 +120,16 @@ nav {
   padding: 30px;
   margin-bottom: 40px;
   border-radius: 3px;
+  max-height: 800px; 
+  overflow-y: scroll;
   /*opacity: .9;*/
+}
+
+#content:after {
+  content: "";
+  display: block;
+  height: 30px;
+  width: 100%;
 }
 
 #artist_image {
@@ -170,4 +179,13 @@ nav {
 .album-title {
   text-align: center;
   margin-top: 5px;
+}
+
+#no_results {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 3px;
 }
