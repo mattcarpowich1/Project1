@@ -98,12 +98,16 @@ nav {
   margin-right: 40px;
 }
 
+.row {
+  margin-bottom: 15px;
+}
+
 #info {
   display: block;
   text-align: center;
   margin: 0 auto;
   margin-top: 120px;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(37, 38, 36, 0.85);
   padding: 40px 15px 40px 15px;
   border-radius: 3px;
 }
@@ -114,13 +118,12 @@ nav {
 
 #searchResult {
   display: none;
-  background-color: rgba(70, 74, 78, 0.80);
+  background-color: rgba(37, 38, 36, 0.85);
   color: white;
   margin-top: 40px;
   padding: 30px;
   margin-bottom: 40px;
   border-radius: 3px;
-  /*opacity: .9;*/
 }
 
 #artist_image {
@@ -143,6 +146,12 @@ nav {
   display: none;
 }
 
+#album_section {
+  border: 1px solid grey;
+  padding: 10px;
+  background-color: rgba(19, 18, 15, 0.61);
+}
+
 #artist_albums {
   display: flex;
   flex-direction: row;
@@ -152,7 +161,7 @@ nav {
 }
 
 #album_section h5 {
-  text-align: center;
+  text-align: left;
   padding: 0;
   margin: 0;
   line-height: 1;
@@ -160,7 +169,7 @@ nav {
 
 .img-holder {
   width: 45%;
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,6 +183,7 @@ nav {
 .album-title {
   text-align: center;
   margin-top: 5px;
+  font-size: 12px;
 }
 
 #songs-list h6 {
@@ -183,10 +193,33 @@ nav {
 }
 
 div#top-songs {
-  background-color: rgba(19, 18, 15, 0.41);
+  background-color: rgba(19, 18, 15, 0.61);
 }
 
 .social a {
   font-size: 14px;
   color: white;
+}
+
+#awards {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 991px) {
+
+  #artist_albums {
+    justify-content: flex-start;
+  }
+
+  .img-holder {
+    width: 32%;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-holder:nth-child(3n + 1), .img-holder:nth-child(3n + 2) {
+    margin-right: 2%;
+  }
 }
