@@ -71,9 +71,17 @@ nav {
   width: 100%;
 }
 
+#search-input {
+  border-radius: 0px;
+}
+
 .btn-secondary {
   background-color: white;
   border: 1px solid #ccc;
+}
+
+#submit {
+  border-radius: 0px;
 }
 
 #submit:hover {
@@ -95,15 +103,15 @@ nav {
 }
 
 #nav_links_area a {
-  margin-right: 40px;
+  margin-right: 10%;
+}
+
+#left_side {
+  padding: 0;
 }
 
 .row {
   margin-bottom: 15px;
-}
-
-.row:last-child {
-  margin-bottom: 0px;
 }
 
 #info {
@@ -293,15 +301,18 @@ div #events, #awards, #top-songs {
 
 @media screen and (max-width: 1199px) {
   #artist_bio p {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 991px) {
 
+  #main_row {
+    margin-bottom: 0;
+  }
+
   #artist_albums {
     justify-content: flex-start;
-    margin-bottom: 10px;
   }
 
   #artist_bio p {
@@ -318,6 +329,10 @@ div #events, #awards, #top-songs {
 
   .img-holder:nth-child(3n + 1), .img-holder:nth-child(3n + 2) {
     margin-right: 2%;
+  }
+
+  #awards {
+    margin-bottom: 5px;
   }
 }
 
