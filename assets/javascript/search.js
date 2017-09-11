@@ -27,6 +27,7 @@ $(function() {
           console.log(artistImageURL);
 
           window.artistName = artistName;
+          window.imgURL = artistImageURL;
 
           $("#searchResult").show();
 

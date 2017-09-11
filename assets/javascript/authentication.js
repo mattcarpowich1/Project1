@@ -106,6 +106,7 @@ $("#sign-up").on("click", function(event) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    console.log("errorMessage");
   });
 
   //clear input fields
@@ -131,8 +132,9 @@ $("#add").on("click", function(event) {
 
       artistList.addToList(window.artistName);
 
-      firebase.database().ref('users/' + user.uid).set({
-        artist: artistList.toString()
+      firebase.database().ref('users/' + user.uid + '/artists').push({
+        artist: window.artistName,
+        imgURL: window.imgURL
       });
     }
   }
@@ -141,12 +143,22 @@ $("#add").on("click", function(event) {
 $("#delete").on("click", function(event) {
   var user = firebase.auth().currentUser;
 
-  artistList.deleteLI(window.artistName);
+  // artistList.deleteLI(window.artistName);
 
-  firebase.database().ref('users/' + user.uid).set({
-    artist: artistList.toString()
+  var ref = firebase.database().ref('users/' + user.uid + '/artists');
+  ref.orderByChild("artist").equalTo(window.artistName).on("child_added", function(snapshot) {
+    var item = firebase.database().ref('users/' + user.uid + '/artists/' + snapshot.key);
+    item.remove().then(function(){
+      console.log("Successful Removal");
+    }).catch(function(error) {
+      console.log("Remove Failed: " + error.message);
+    })
   });
-  console.log("delete");
+
+  // firebase.database().ref('users/' + user.uid).set({
+  //   artist: artistList.toString()
+  // });
+  
 })
 
 //real time listener for if there is a change in User
