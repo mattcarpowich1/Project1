@@ -107,6 +107,7 @@ nav {
 
 #nav_links_area a {
   margin-right: 10%;
+  white-space: nowrap;
 }
 
 #left_side {
