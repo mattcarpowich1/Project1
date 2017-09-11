@@ -161,6 +161,7 @@ nav {
 #artist_bio p {
   text-align: justify;
   font-size: 1.15rem;
+  margin-bottom: 0;
 }
 
 #artist_bio p a {
@@ -265,7 +266,7 @@ div #events, #awards, #top-songs {
 }
 
 #eventItems {
-  max-height: 400px;
+  max-height: 200px;
   overflow-y: scroll;
 }
 
@@ -282,12 +283,13 @@ div #events, #awards, #top-songs {
 }
 
 .event-date {
-  font-size: 1.15rem;
+  font-size: 1.13rem;
   margin-bottom: 5px;
 }
 
 .event-name, .event-address {
   font-weight: 300;
+  font-size: 13px;
 }
 
 .ticket-link {
@@ -325,6 +327,7 @@ div #events, #awards, #top-songs {
 
   #artist_bio p {
     font-size: 1rem;
+    margin-bottom: 20px;
   }
 
   .img-holder {
