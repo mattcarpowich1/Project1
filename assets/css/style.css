@@ -74,9 +74,17 @@ nav {
   width: 100%;
 }
 
+#search-input {
+  border-radius: 0px;
+}
+
 .btn-secondary {
   background-color: white;
   border: 1px solid #ccc;
+}
+
+#submit {
+  border-radius: 0px;
 }
 
 #submit:hover {
@@ -98,7 +106,11 @@ nav {
 }
 
 #nav_links_area a {
-  margin-right: 40px;
+  margin-right: 10%;
+}
+
+#left_side {
+  padding: 0;
 }
 
 .row {
@@ -109,10 +121,12 @@ nav {
   display: block;
   text-align: center;
   margin: 0 auto;
-  margin-top: 120px;
-  background-color: rgba(37, 38, 36, 0.85);
-  padding: 40px 15px 40px 15px;
-  border-radius: 3px;
+  margin-top: 40px;
+  background-color: rgba(70, 74, 78, .8);
+  padding: 60px 15px 60px 15px;
+  -webkit-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  -moz-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
 }
 
 #info h1, #info h3 {
@@ -121,12 +135,14 @@ nav {
 
 #searchResult {
   display: none;
-  background-color: rgba(37, 38, 36, 0.85);
+  background-color: rgba(70, 74, 78, .8);
   color: white;
   margin-top: 40px;
   padding: 30px;
   margin-bottom: 40px;
-  border-radius: 3px;
+  -webkit-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  -moz-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
 }
 
 #artist_image {
@@ -141,8 +157,14 @@ nav {
   opacity: 1;
 }
 
+#artist_bio h3 {
+  font-size: 2.25rem;
+}
+
 #artist_bio p {
   text-align: justify;
+  font-size: 1.15rem;
+  margin-bottom: 0;
 }
 
 #artist_bio p a {
@@ -150,9 +172,7 @@ nav {
 }
 
 #album_section {
-  border: 1px solid grey;
-  padding: 10px;
-  /*background-color: rgba(19, 18, 15, 0.61);*/
+  padding: 0px;
 }
 
 #artist_albums {
@@ -168,6 +188,7 @@ nav {
   padding: 0;
   margin: 0;
   line-height: 1;
+  color: white;
 }
 
 .img-holder {
@@ -199,19 +220,117 @@ div#top-songs {
   background-color: rgba(19, 18, 15, 0.61);
 }
 
-.social a {
-  font-size: 14px;
+div.social {
   color: white;
+}
+
+div i .fa {
+  font-size: 24px;
+  font-weight: 700px;
+}
+
+div.social span {
+  font-family: "Arial", sans-serif;
+  font-size: 10px;
+  padding-left: 30px;
+}
+
+div.social {
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  background-color: rgba(52, 111, 169, 0.48);
+}
+
+div#top-songs {
+  margin: 20px 0;
+}
+
+#songs-list a {
+  font-size: 12px;
+  color: rgba(203, 226, 249, 1);
+  font-weight: 300;
+}
+
+#songs-list a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+div #events, #awards, #top-songs {
+  padding: 15px;
 }
 
 #awards {
   margin-bottom: 15px;
 }
 
+#eventItems {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.event {
+  margin-bottom: 10px;
+}
+
+.event:last-child {
+  margin-bottom: 0;
+}
+
+.event p {
+  margin-bottom: 0;
+}
+
+.event-date {
+  font-size: 1.13rem;
+  margin-bottom: 5px;
+}
+
+.event-name, .event-address {
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.ticket-link {
+  color: white;
+}
+
+.ticket-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#no_results {
+  display: none;
+  background-color: rgba(70, 74, 78, .8);
+  color: white;
+  margin-top: 40px;
+  padding: 30px;
+}
+
+@media screen and (max-width: 1199px) {
+  #artist_bio p {
+    font-size: 1rem;
+  }
+}
+
 @media screen and (max-width: 991px) {
+
+  #main_row {
+    margin-bottom: 0;
+  }
 
   #artist_albums {
     justify-content: flex-start;
+  }
+
+  #artist_bio p {
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
 
   .img-holder {
@@ -225,4 +344,24 @@ div#top-songs {
   .img-holder:nth-child(3n + 1), .img-holder:nth-child(3n + 2) {
     margin-right: 2%;
   }
+
+  #awards {
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  
+  .container {
+    width: 95%;
+  }
+
+  #app_link {
+    display: none;
+  }
+
+  #nav_links_area a {
+    margin-right: 10%;
+  }
+
 }
