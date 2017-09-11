@@ -299,6 +299,14 @@ div #events, #awards, #top-songs {
   cursor: pointer;
 }
 
+#no_results {
+  display: none;
+  background-color: rgba(70, 74, 78, .8);
+  color: white;
+  margin-top: 40px;
+  padding: 30px;
+}
+
 @media screen and (max-width: 1199px) {
   #artist_bio p {
     font-size: 1rem;
