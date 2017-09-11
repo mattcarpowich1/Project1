@@ -1,6 +1,15 @@
 // Search artist using Last.fm API
 $(function() {
 
+  function showErrorMessage(text) {
+    $("#searchResult").hide();
+    var $message = $("<h2>");
+    $message.text(text);
+    $("#no_results_message").append($message);
+    $("#info").hide();
+    $("#no_results").show();
+  }
+
 
   $("#search_form").on("submit", function(e) {
 
@@ -16,13 +25,16 @@ $(function() {
         method: "GET"
       }).done(function(response) { 
         if (response.error) {
-          console.log("No results returned");
+          $("#no_results_message").empty();
+          showErrorMessage("No results found for " + name);
         } else {
           $("#info").hide();
           $("#facebook").empty();
           $("#instagram").empty();
           $("#twitter").empty();
           $("#tumblr").empty();
+          $("#no_results_message").empty();
+          $("#no_results").hide();
 
           var artist = response.artist;
           var artistName = artist.name;
