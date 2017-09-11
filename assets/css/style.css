@@ -256,6 +256,41 @@ div #events, #awards, #top-songs {
   margin-bottom: 15px;
 }
 
+#eventItems {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.event {
+  margin-bottom: 10px;
+}
+
+.event:last-child {
+  margin-bottom: 0;
+}
+
+.event p {
+  margin-bottom: 0;
+}
+
+.event-date {
+  font-size: 1.15rem;
+  margin-bottom: 5px;
+}
+
+.event-name, .event-address {
+  font-weight: 300;
+}
+
+.ticket-link {
+  color: white;
+}
+
+.ticket-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1199px) {
   #artist_bio p {
     font-size: 1.15rem;
@@ -266,6 +301,7 @@ div #events, #awards, #top-songs {
 
   #artist_albums {
     justify-content: flex-start;
+    margin-bottom: 10px;
   }
 
   #artist_bio p {
