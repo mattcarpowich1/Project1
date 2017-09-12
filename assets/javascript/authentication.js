@@ -110,7 +110,7 @@ $("#sign-up").on("click", function(event) {
   if (is_email) {
     true;
   } else {
-    $("#error").text("A valid email address is required");
+    $("#errorEmail").text("A valid email address is required.");
   }
 
   //validate password
@@ -119,17 +119,18 @@ $("#sign-up").on("click", function(event) {
   if (is_pass) {
     true;
   } else {
-    $("#errorPass").text("Password must be between 6-20 characters with at least one digit, one upper, and one lowercase character");
+    $("#errorPass").text("Password must be between 6-20 characters with at least one digit, one upper, and one lowercase character.");
   }
 
-
-  // Sign in
-  var promise = auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log(errorMessage);
-  });
+  if (is_pass && is_email) {
+    // Sign in
+    var promise = auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+  } 
 
   //clear input fields
   $("#txtEmail").val("");
