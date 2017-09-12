@@ -79,18 +79,6 @@ $(function() {
 
           $("#search-input").val("");
 
-          $(".facebook").attr("href", "https://facebook.com/" + name.toUpperCase());
-          $("#facebook").append("<span>FACEBOOK/" + name.toUpperCase() + "</span>");
-
-          $(".instagram").attr("href", "https://instagram.com/" + name.toUpperCase());
-          $("#instagram").append("<span>INSTAGRAM/" + name.toUpperCase() + "</span>");
-
-          $(".twitter").attr("href", "https://twitter.com/" + name.toUpperCase());
-          $("#twitter").append("<span>TWITTER/" + name.toUpperCase() + "</span>");
-
-          $(".tumblr").attr("href", "https://tumblr.com/" + name.toUpperCase());
-          $("#tumblr").append("<span>TUMBLR/" + name.toUpperCase() + "</span>");
-
           //ajax call for albums
 
           var queryURL2 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + 
@@ -163,6 +151,68 @@ $(function() {
             }
             
           });
+
+          var artist_id;
+          // var api_key2 = "c8303e90962e3a5ebd5a1f260a69b138";
+          var api_key3 = "21cbdbd61de260cbec654f0bd5be5c81";
+          var queryURL4 = "http://api.musicgraph.com/api/v2/artist/search?api_key=" + api_key3 + "&name=" + name;
+          
+          // one api call nested inside another, first one gets artsit_id, second one - gets artist_urls
+          $.ajax({ 
+            url: queryURL4, 
+            method: "GET"
+          }).done(function(response) {
+              if (response.error) {
+              console.log("No results returned");
+              } else {
+                var artist_id = String(response.data[0].id);
+                console.log(artist_id);
+                var queryURL5 = "http://api.musicgraph.com/api/v2/artist/" + artist_id + "/social-urls?api_key=" + api_key3;
+
+                $.ajax({
+                  url: queryURL5,
+                  method: "GET"
+                }).done(function(response) {
+                  var facebookURL = response.data.facebook_url;
+                  var twitterURL = response.data.twitter_url;
+                  var instagramURL = response.data.instagram_url;
+
+                  if (facebookURL) {
+                    $(".facebook").attr("href", facebookURL);
+                    $(".facebook .url-holder span").text(facebookURL);
+                    $(".facebook").show();
+                  } else {
+                    $(".facebook").hide();
+                  }
+
+                  if (twitterURL) {
+                    $(".twitter").attr("href", twitterURL);
+                    $(".twitter .url-holder span").text(twitterURL);
+                    $(".twitter").show();
+                  } else {
+                    $(".twitter").hide();
+                  }
+
+                  if (instagramURL) {
+                    $(".instagram").attr("href", instagramURL);
+                    $(".instagram .url-holder span").text(instagramURL);
+                    $(".instagram").show();
+                  } else {
+                    $(".instagram").hide();
+                  }
+
+                  if (response.data.official_url) {
+                    console.log("HEY");
+                    $(".official").attr("href", response.data.official_url[0]);
+                    $("#official").text(response.data.official_url[0]);
+                    $(".official").show();
+                  } else {
+                    $(".official").hide();
+                  }
+
+                });
+              }
+            });
 
           // ajax call for events information
           // var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
