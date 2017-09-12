@@ -1,5 +1,6 @@
 $(function() {
 
+
   function showErrorMessage(text) {
     $("#searchResult").hide();
     var $message = $("<h2>");
@@ -19,6 +20,7 @@ $(function() {
       var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
         name + "&limit=1&api_key=" + api_key + "&format=json&autocorrect=1";
 
+      $("#my_artists").hide();
 
       // Search artist using Last.fm API
       $.ajax({ 
@@ -50,6 +52,24 @@ $(function() {
 
           window.artistName = artistName;
           window.imgURL = artistImageURL;
+
+          console.log("ARTIST LIST: " + window.artistList);
+          console.log("ARTIST NAME: " + window.artistName);
+
+          // if this artist is in the artist list
+          if (window.artistList.indexOf(window.artistName) > -1) {
+            $("#add_holder").removeClass("add");
+            $("#add_holder").addClass("remove");
+            $("#add_text").text("Remove");
+            $("#add").removeClass("fa-plus");
+            $("#add").addClass("fa-times");
+          } else {
+            $("#add_holder").removeClass("remove");
+            $("#add_holder").addClass("add");
+            $("#add_text").text("Add");
+            $("#add").removeClass("fa-times");
+            $("#add").addClass("fa-plus");
+          }
 
           $("#searchResult").show();
 
@@ -87,8 +107,6 @@ $(function() {
               $("#artist_albums").empty();
               //array of albums
               var albums = response.topalbums.album;
-
-              console.log(albums);
 
               for (var i = 0; i < albums.length; i++) {
 
@@ -147,89 +165,89 @@ $(function() {
           });
 
           // ajax call for events information
-          var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
-          var replacedName = name.split(' ').join('-');
-          var artistId = '';
-          console.log("name: " + replacedName);
+          // var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
+          // var replacedName = name.split(' ').join('-');
+          // var artistId = '';
+          // console.log("name: " + replacedName);
           // Ajax call to get Artist ID
-          var eventsUrlByArtist = "http://api.jambase.com/artists?name=" + name + "&page=0&api_key=" + eventsAPI;
-          $.ajax({
-           url: eventsUrlByArtist,
-           method: "GET"
-          }).done(function(response) {
-            artistId = response.Artists[0].Id;
+          // var eventsUrlByArtist = "http://api.jambase.com/artists?name=" + name + "&page=0&api_key=" + eventsAPI;
+          // $.ajax({
+          //  url: eventsUrlByArtist,
+          //  method: "GET"
+          // }).done(function(response) {
+          //   artistId = response.Artists[0].Id;
 
             // Ajax call to get events:
-            var eventsURL = "http://api.jambase.com/events?artistId=" + artistId + "&api_key=" + eventsAPI;
-            console.log(eventsURL);
-            $.ajax({
-              url: eventsURL,
-              method: "GET"
-            }).done(function(response) {
-              if (response.error) {
-                 $("#eventItems").html("No Event information");
-                 console.log("No upcoming events to show");
-              } else {
-                $("#eventItems").empty();
-                console.log(response);
-                var allEvents = response.Events;
-                console.log("all events" + allEvents);
-                var numEvents = allEvents.length;
+          //   var eventsURL = "http://api.jambase.com/events?artistId=" + artistId + "&api_key=" + eventsAPI;
+          //   console.log(eventsURL);
+          //   $.ajax({
+          //     url: eventsURL,
+          //     method: "GET"
+          //   }).done(function(response) {
+          //     if (response.error) {
+          //        $("#eventItems").html("No Event information");
+          //        console.log("No upcoming events to show");
+          //     } else {
+          //       $("#eventItems").empty();
+          //       console.log(response);
+          //       var allEvents = response.Events;
+          //       console.log("all events" + allEvents);
+          //       var numEvents = allEvents.length;
 
-                if (allEvents.length == 0) {
-                  $("#eventItems").html("No Upcoming Events to Show");
-                } else {
-                  var indEventName = '';
-                  var indEventDateTime = '';
-                  var indEventAddress = '';
-                  var indEventTicketURL = '';
+          //       if (allEvents.length == 0) {
+          //         $("#eventItems").html("No Upcoming Events to Show");
+          //       } else {
+          //         var indEventName = '';
+          //         var indEventDateTime = '';
+          //         var indEventAddress = '';
+          //         var indEventTicketURL = '';
 
-                  for (index = 0; index < numEvents; index++) {
-                    indEventName = response.Events[index].Venue.Name;
-                    indEventDateTime = response.Events[index].Date;
-                    indEventAddress = response.Events[index].Venue.Address;
-                    indEventTicketURL = response.Events[index].TicketUrl;
-                    console.log("name" + indEventName);
-                    console.log("date " + indEventDateTime);
-                    console.log("address" + indEventAddress);
-                    console.log("URL" + indEventTicketURL);
+          //         for (index = 0; index < numEvents; index++) {
+          //           indEventName = response.Events[index].Venue.Name;
+          //           indEventDateTime = response.Events[index].Date;
+          //           indEventAddress = response.Events[index].Venue.Address;
+          //           indEventTicketURL = response.Events[index].TicketUrl;
+          //           console.log("name" + indEventName);
+          //           console.log("date " + indEventDateTime);
+          //           console.log("address" + indEventAddress);
+          //           console.log("URL" + indEventTicketURL);
 
-                    // $("#eventItems").append("<ul><li>Event Name: " + indEventName + "</li><li>Event Date & Time: " + indEventDateTime + "</li><li>Event Address: " + indEventAddress + "</li><li><a href='" + indEventTicketURL + "'>Click Here to Buy Your Ticket Now!</a></li></ul>");
+          //           // $("#eventItems").append("<ul><li>Event Name: " + indEventName + "</li><li>Event Date & Time: " + indEventDateTime + "</li><li>Event Address: " + indEventAddress + "</li><li><a href='" + indEventTicketURL + "'>Click Here to Buy Your Ticket Now!</a></li></ul>");
 
-                    var $event = $("<div>");
-                    $event.addClass("event");
+          //           var $event = $("<div>");
+          //           $event.addClass("event");
 
-                    //if there is date info, format and append to $event
-                    if (indEventDateTime) {
-                      var timeArray = indEventDateTime.split("T");
-                      var date = timeArray[0];
-                      var date = moment(date).format("MMMM Do YYYY");
-                      $event.append("<p><span class='event-date'>" + date + "</span></p>");
-                    } 
+          //           //if there is date info, format and append to $event
+          //           if (indEventDateTime) {
+          //             var timeArray = indEventDateTime.split("T");
+          //             var date = timeArray[0];
+          //             var date = moment(date).format("MMMM Do YYYY");
+          //             $event.append("<p><span class='event-date'>" + date + "</span></p>");
+          //           } 
 
-                    //if there is an event name, append to $event
-                    if (indEventName) {
-                      $event.append("<p><span class='event-name'>" + indEventName + "</span></p>");
-                    } 
+          //           //if there is an event name, append to $event
+          //           if (indEventName) {
+          //             $event.append("<p><span class='event-name'>" + indEventName + "</span></p>");
+          //           } 
 
-                    //if there is an event address, append to $event
-                    if (indEventAddress) {
-                      $event.append("<p><span class='event-address'>" + indEventAddress + "</span></p>");
-                    } 
+          //           //if there is an event address, append to $event
+          //           if (indEventAddress) {
+          //             $event.append("<p><span class='event-address'>" + indEventAddress + "</span></p>");
+          //           } 
 
-                    //if there is a url for tickets, create link and append to $event
-                    if (indEventTicketURL) {
-                      $event.append("<p><a class='ticket-link' href='" + indEventTicketURL + "'>TICKETS</a></p>");
-                    }
+          //           //if there is a url for tickets, create link and append to $event
+          //           if (indEventTicketURL) {
+          //             $event.append("<p><a class='ticket-link' href='" + indEventTicketURL + "'>TICKETS</a></p>");
+          //           }
 
-                    $("#eventItems").append($event);
+          //           $("#eventItems").append($event);
 
-                  };
-                };
-              };
-            });
+          //         };
+          //       };
+          //     };
+          //   });
 
-          });
+          // });
 
         }
         

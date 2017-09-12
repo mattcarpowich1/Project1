@@ -16,6 +16,20 @@ var database = firebase.database();
 var txtEmail = $("#txtEmail");
 var txtPassword = $("#txtPassword");
 
+window.addToggle = function() {
+  // Find all dinosaurs whose height is exactly 25 meters.
+  var user = firebase.auth().currentUser;
+  var artistRef = firebase.database().ref("users/" + user.uid + "/artists");
+  artistRef.orderByChild("artist").equalTo(window.artistName).on("value", function(snapshot) {
+    if (snapshot.val()) {
+      console.log("FUCK");
+      $("#add").remove();
+      $("#add_text").text("Remove Artist");
+      $("$#add_holder").prepend('<i id="remove" class="fa fa-minus-circle" aria-hidden="true"></i>');
+    }
+  });
+}
+
 var artistList = {
   list: [],
   addToList: function (artist) {
@@ -106,7 +120,7 @@ $("#sign-up").on("click", function(event) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log("errorMessage");
+    console.log(errorMessage);
   });
 
   //clear input fields
@@ -154,29 +168,26 @@ $("#delete").on("click", function(event) {
       console.log("Remove Failed: " + error.message);
     })
   });
-
-  // firebase.database().ref('users/' + user.uid).set({
-  //   artist: artistList.toString()
-  // });
   
-})
+});
 
 //real time listener for if there is a change in User
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
   if(firebaseUser){
-    console.log(firebaseUser.email);
+
     $("#current-user").text(firebaseUser.email);
     $("#topCornerButton").html("<a href='' id='sign-out'>Log Out</a>");
 
     var user = firebase.auth().currentUser;
 
-    firebase.database().ref('users/' + user.uid).on("value", function(snapshot) {
-      artistList.updateList(snapshot.val().artist);
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+    // firebase.database().ref('users/' + user.uid).on("value", function(snapshot) {
+    //   artistList.updateList(snapshot.val().artist);
+    // }, function (errorObject) {
+    //   console.log("The read failed: " + errorObject.code);
+    // });
   } else {
-    console.log("not logged in")
+    console.log("not logged in");
+    $("#topCornerButton").html("<a href='authentication.html'>Log In</a>");
     $("#current-user").text("");
     $("#sign-out").addClass('hide');
   }

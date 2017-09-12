@@ -45,7 +45,7 @@
         <div id="nav_links_area">
           <span id="current-user"></span>
           <div></div>
-          <span id="topCornerButton"><a href="authentication.html">Log In</a></span>
+          <span id="topCornerButton"></span>
         </div>
 
       </div>
@@ -58,6 +58,12 @@
 
     <div class="container" id="no_results">
       <div class="row" id="no_results_message">
+      </div>
+    </div>
+
+    <div class="container" id="my_artists">
+      <h2>My Artists</h2>
+      <div id="artist_icons">
       </div>
     </div>
 
@@ -138,10 +144,19 @@
 
                   <div id="artist_bio">
                     <!-- add bio here -->
-                      <h3></h3>
+                      <div id="bio_header">
+                        <h3></h3>
+                        <div id="add_artist">
+                          <div id="add_holder" class="add-remove add">
+                            <i id="add" class="add-button fa fa-plus" aria-hidden="true"></i>
+                            <span id="add_text">Add</span>
+                          </div>
+                        </div>
+                      </div>
+                    
                       <p></p>
-                      <img id="add" src="https://image.flaticon.com/icons/svg/159/159690.svg" width="30" height="30">
-                      <button id="delete">Delete</button>
+                      
+                      <!-- <button id="delete">Delete</button> -->
                   </div>
 
                 </div>
@@ -185,6 +200,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
     <script type="text/javascript" src="assets/javascript/search.js"></script>
     <!-- Walden script -->
-    <script src="assets/javascript/authentication.js"></script>
+    <!-- <script src="assets/javascript/authentication.js"></script> -->
+    <script src="assets/javascript/my_artists.js"></script>
   </body>
 </html>
