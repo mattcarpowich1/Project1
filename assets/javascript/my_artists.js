@@ -85,6 +85,11 @@ $(function() {
 
     if (window.artistName) {
 
+      $("#add_holder").addClass("animation-target");
+        _.delay(function(text) {
+          $("#add_holder").removeClass(text);
+      }, 1000, 'animation-target');
+
 
       var ref = firebase.database().ref("users/" + user.uid + "/artists");
       ref.orderByChild("artist").equalTo(window.artistName).on("value", function(snapshot) {
