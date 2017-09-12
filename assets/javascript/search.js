@@ -202,8 +202,6 @@ $(function() {
                     $(".official").hide();
                   }
 
-
-                  // $("#button").html("official website: " + response.data.official_url[0]);
                 });
               }
             });
