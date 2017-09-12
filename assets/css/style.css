@@ -433,6 +433,10 @@ div #events, #awards, #top-songs {
   margin-bottom: 15px;
 }
 
+.artist-holder:hover {
+  cursor: pointer;
+}
+
 .artist-holder h5 {
   text-align: center;
   font-weight: 400;
