@@ -109,11 +109,19 @@ $("#sign-up").on("click", function(event) {
   var is_email=re.test(email);
   if (is_email) {
     true;
-    console.log("loss");
   } else {
     $("#error").text("A valid email address is required");
-    console.log("win");
   }
+
+  //validate password
+  var rePass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+  var is_pass =rePass.test(pass);
+  if (is_pass) {
+    true;
+  } else {
+    $("#errorPass").text("Password must be between 6-20 characters with at least one digit, one upper, and one lowercase character");
+  }
+
 
   // Sign in
   var promise = auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
