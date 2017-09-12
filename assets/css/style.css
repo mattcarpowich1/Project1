@@ -236,6 +236,13 @@ div.social {
   padding: 10px 20px;
   margin-bottom: 5px;
   background-color: rgba(52, 111, 169, 0.48);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+div.social h6 {
+  font-size: .8rem;
 }
 
 div#top-songs {
