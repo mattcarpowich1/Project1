@@ -145,8 +145,9 @@ $(function() {
 
           // var name = "adele"; //get value from search input
           var artist_id;
-          var api_key2 = "c8303e90962e3a5ebd5a1f260a69b138";
-          var queryURL = "http://api.musicgraph.com/api/v2/artist/search?api_key=" + api_key2 + "&name=" + name;
+          // var api_key2 = "c8303e90962e3a5ebd5a1f260a69b138";
+          var api_key3 = "21cbdbd61de260cbec654f0bd5be5c81";
+          var queryURL = "http://api.musicgraph.com/api/v2/artist/search?api_key=" + api_key3 + "&name=" + name;
           
           // one api call nested inside another, first one gets artsit_id, second one - gets artist_urls
           $.ajax({ 
@@ -158,7 +159,7 @@ $(function() {
               } else {
                 var artist_id = String(response.data[0].id);
                 console.log(artist_id);
-                var queryURL2 = "http://api.musicgraph.com/api/v2/artist/" + artist_id + "/social-urls?api_key=" + api_key2;
+                var queryURL2 = "http://api.musicgraph.com/api/v2/artist/" + artist_id + "/social-urls?api_key=" + api_key3;
 
                 $.ajax({
                   url: queryURL2,
@@ -170,7 +171,7 @@ $(function() {
 
                   if (facebookURL) {
                     $(".facebook").attr("href", facebookURL);
-                    $("#facebook").after("<span>" + facebookURL + "</span>");
+                    $(".facebook .url-holder span").text(facebookURL);
                     $(".facebook").show();
                   } else {
                     $(".facebook").hide();
@@ -178,7 +179,7 @@ $(function() {
 
                   if (twitterURL) {
                     $(".twitter").attr("href", twitterURL);
-                    $("#twitter").after("<span>" + twitterURL + "</span>");
+                    $(".twitter .url-holder span").text(twitterURL);
                     $(".twitter").show();
                   } else {
                     $(".twitter").hide();
@@ -186,15 +187,16 @@ $(function() {
 
                   if (instagramURL) {
                     $(".instagram").attr("href", instagramURL);
-                    $("#instagram").after("<span>" + twitterURL + "</span>");
+                    $(".instagram .url-holder span").text(instagramURL);
                     $(".instagram").show();
                   } else {
                     $(".instagram").hide();
                   }
 
-                  if (response.data.official_url[0]) {
+                  if (response.data.official_url) {
+                    console.log("HEY");
                     $(".official").attr("href", response.data.official_url[0]);
-                    $("#official").append(response.data.official_url[0]);
+                    $("#official").text(response.data.official_url[0]);
                     $(".official").show();
                   } else {
                     $(".official").hide();

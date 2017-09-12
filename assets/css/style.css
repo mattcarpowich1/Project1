@@ -229,24 +229,50 @@ div i .fa {
 div.social span {
   font-family: "Arial", sans-serif;
   font-size: 10px;
-  padding-left: 30px;
+  /*padding-left: 30px;*/
 }
 
 div.social {
-  padding: 10px 20px;
   margin-bottom: 5px;
   background-color: rgba(52, 111, 169, 0.48);
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+
+.social-link:last-child > .social {
+  margin-bottom: 20px;
+}
+
+.icon-holder {
+  width: 23%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.url-holder {
+  width: 77%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div.social h6 {
-  font-size: .8rem;
+  font-size: .7rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.official > div {
+  height: 52px;
 }
 
 div#top-songs {
   margin: 20px 0;
+  margin-top: 0px;
 }
 
 #songs-list a {
