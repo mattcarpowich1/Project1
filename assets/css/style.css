@@ -114,6 +114,12 @@ nav {
   margin-right: 10%;
 }
 
+#current-user {
+  margin-right: 9%;
+  font-size: .9vw;
+  align-self: center;
+}
+
 #left_side {
   padding: 0;
 }
@@ -540,6 +546,14 @@ div #events, #awards, #top-songs {
   #awards {
     margin-bottom: 5px;
   }
+}
+
+@media screen and (max-width: 767px) {
+
+  #current-user {
+    display: none;
+  }
+
 }
 
 @media screen and (max-width: 575px) {
