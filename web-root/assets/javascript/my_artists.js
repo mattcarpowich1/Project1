@@ -68,8 +68,6 @@ $(function() {
 
   });
 
-  firebase.database().ref('users/')
-
   //When there is a User logged in this handles sign out
   $("#topCornerButton").on("click", "#sign-out", function(event) {
     firebase.auth().signOut(); 
