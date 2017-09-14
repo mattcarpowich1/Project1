@@ -555,7 +555,6 @@ div #events, #awards, #top-songs {
 @media screen and (max-width: 767px) {
 
   #nav_logo_name_area h2 {
-    /*display: none;*/
     font-size: 4.1vw;
   }
 
