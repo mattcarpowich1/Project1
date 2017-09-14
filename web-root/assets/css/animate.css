@@ -899,6 +899,8 @@
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
   animation-name: flipInX;
+  animation-duration: .5s;
+  animation-timing-function: ease;
 }
 
 @keyframes flipInY {

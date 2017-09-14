@@ -40,6 +40,7 @@ $(function() {
     if (firebaseUser) {
 
     var user = firebase.auth().currentUser;
+    window.currentUser = user;
 
       if(!(window.displayedOnce)) {
 
@@ -68,6 +69,7 @@ $(function() {
 
   });
 
+
   //When there is a User logged in this handles sign out
   $("#topCornerButton").on("click", "#sign-out", function(event) {
     firebase.auth().signOut(); 
@@ -76,27 +78,31 @@ $(function() {
   $("body").on("click", ".add", function(event) {
 
     var user = firebase.auth().currentUser;
+    $(this).removeClass("flipInX");
 
     if (window.artistName) {
 
-      $("#add_holder").addClass("animation-target");
-        _.delay(function(text) {
-          $("#add_holder").removeClass(text);
-      }, 1000, 'animation-target');
-
-
       var ref = firebase.database().ref("users/" + user.uid + "/artists");
-      ref.orderByChild("artist").equalTo(window.artistName).on("value", function(snapshot) {
+      ref.orderByChild("artist").equalTo(window.artistName).once("value", function(snapshot) {
         if (snapshot.val()) {
           return false;
         } else {
           firebase.database().ref('users/' + user.uid + '/artists').push({
             artist: window.artistName,
             imgURL: window.imgURL
+          }).then(function() {
+            window.artistList.push(window.artistName);
+            $("#add_holder").removeClass("add");
+            $("#add_holder").addClass("remove");
+            $("#add_text").text("Remove");
+            $("#add").removeClass("fa-plus");
+            $("#add").addClass("fa-times");
+            $("#add_holder").addClass("fadeIn");
           });
-          window.artistList.push(window.artistName);
+          
         }
       });
+
 
     }
 
@@ -104,17 +110,27 @@ $(function() {
 
   $("body").on("click", ".remove", function(event) {
     var user = firebase.auth().currentUser;
+    $(this).removeClass("fadeIn");
 
     var ref = firebase.database().ref('users/' + user.uid + '/artists');
-    ref.orderByChild("artist").equalTo(window.artistName).on("child_added", function(snapshot) {
+    ref.orderByChild("artist").equalTo(window.artistName).once("child_added", function(snapshot) {
       var item = firebase.database().ref('users/' + user.uid + '/artists/' + snapshot.key);
       item.remove();
+    }).then(function() {
+      var index = window.artistList.indexOf(window.artistName);
+      if (index > -1) {
+        window.artistList.splice(index, 1);
+        $("#add_holder").removeClass("remove");
+        $("#add_holder").addClass("add");
+        $("#add_text").text("Add");
+        $("#add").removeClass("fa-times");
+        $("#add").addClass("fa-plus");
+        $("#add_holder").addClass("flipInX");
+      }
+
     });
 
-    var index = window.artistList.indexOf(window.artistName);
-    if (index > -1) {
-      window.artistList.splice(index, 1);
-    };
+
   });
 
 });
