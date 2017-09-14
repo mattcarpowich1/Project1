@@ -37,9 +37,13 @@ nav {
   margin-right: 10px;
 }
 
+#logo {
+  vertical-align: none;
+}
+
 #nav_logo_name_area h2 {
   margin-bottom: 0;
-  font-size: 30px;
+  font-size: 32px;
   line-height: 1;
 }
 
@@ -549,6 +553,11 @@ div #events, #awards, #top-songs {
 }
 
 @media screen and (max-width: 767px) {
+
+  #nav_logo_name_area h2 {
+    /*display: none;*/
+    font-size: 4.1vw;
+  }
 
   #current-user {
     display: none;
