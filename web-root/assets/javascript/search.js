@@ -48,9 +48,6 @@ $(function() {
         window.artistName = artistName;
         window.imgURL = artistImageURL;
 
-        console.log("ARTIST LIST: " + window.artistList);
-        console.log("ARTIST NAME: " + window.artistName);
-
         // if this artist is in the artist list
         if (window.artistList.indexOf(window.artistName) > -1) {
           $("#add_holder").removeClass("add");
@@ -66,16 +63,17 @@ $(function() {
           $("#add").addClass("fa-plus");
         }
 
-        $("#searchResult").show();
-
         $("#artist_bio h3").text(artistName);
         $("#artist_image img").attr("src", artistImageURL);
         $("#artist_bio p").html(artistBio);
 
         $("#search-input").val("");
 
-        //ajax call for albums
+        $("#searchResult").show();
 
+        
+
+        //ajax call for albums
         var queryURL2 = "https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + 
         name + "&api_key=" + api_key + "&limit=10&format=json";
 
@@ -84,7 +82,7 @@ $(function() {
           method: "GET"
         }).done(function(response) {
           if (response.error) {
-            console.log("No results returned");
+            return false;
           } else {
 
             $("#artist_albums").empty();
@@ -126,7 +124,7 @@ $(function() {
           method: "GET"
         }).done(function(response) { 
             if (response.error) {
-              console.log("No results returned");
+              return false;
             } else {
               
               $("#songs-list").empty();
@@ -148,9 +146,8 @@ $(function() {
         });
 
         var artist_id;
-        // var api_key2 = "c8303e90962e3a5ebd5a1f260a69b138";
-        var api_key3 = "21cbdbd61de260cbec654f0bd5be5c81";
-        var queryURL4 = "http://api.musicgraph.com/api/v2/artist/search?api_key=" + api_key3 + "&name=" + name;
+        var api_key2 = "21cbdbd61de260cbec654f0bd5be5c81";
+        var queryURL4 = "http://api.musicgraph.com/api/v2/artist/search?api_key=" + api_key2 + "&name=" + name;
         
         // one api call nested inside another, first one gets artsit_id, second one - gets artist_urls
         $.ajax({ 
@@ -158,11 +155,10 @@ $(function() {
           method: "GET"
         }).done(function(response) {
             if (response.error) {
-            console.log("No results returned");
+            return false;
             } else {
               var artist_id = String(response.data[0].id);
-              console.log(artist_id);
-              var queryURL5 = "http://api.musicgraph.com/api/v2/artist/" + artist_id + "/social-urls?api_key=" + api_key3;
+              var queryURL5 = "http://api.musicgraph.com/api/v2/artist/" + artist_id + "/social-urls?api_key=" + api_key2;
 
               $.ajax({
                 url: queryURL5,
@@ -197,7 +193,6 @@ $(function() {
                 }
 
                 if (response.data.official_url) {
-                  console.log("HEY");
                   $(".official").attr("href", response.data.official_url[0]);
                   $("#official").text(response.data.official_url[0]);
                   $(".official").show();
@@ -213,7 +208,7 @@ $(function() {
         var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
         var replacedName = name.split(' ').join('-');
         var artistId = '';
-        console.log("name: " + replacedName);
+
         // Ajax call to get Artist ID
         var eventsUrlByArtist = "http://api.jambase.com/artists?name=" + name + "&page=0&api_key=" + eventsAPI;
         $.ajax({
@@ -224,19 +219,15 @@ $(function() {
 
           // Ajax call to get events:
           var eventsURL = "http://api.jambase.com/events?artistId=" + artistId + "&api_key=" + eventsAPI;
-          console.log(eventsURL);
           $.ajax({
             url: eventsURL,
             method: "GET"
           }).done(function(response) {
             if (response.error) {
                $("#eventItems").html("No Event information");
-               console.log("No upcoming events to show");
             } else {
               $("#eventItems").empty();
-              console.log(response);
               var allEvents = response.Events;
-              console.log("all events" + allEvents);
               var numEvents = allEvents.length;
 
               if (allEvents.length == 0) {
@@ -252,10 +243,6 @@ $(function() {
                   indEventDateTime = response.Events[index].Date;
                   indEventAddress = response.Events[index].Venue.Address;
                   indEventTicketURL = response.Events[index].TicketUrl;
-                  console.log("name" + indEventName);
-                  console.log("date " + indEventDateTime);
-                  console.log("address" + indEventAddress);
-                  console.log("URL" + indEventTicketURL);
 
                   // $("#eventItems").append("<ul><li>Event Name: " + indEventName + "</li><li>Event Date & Time: " + indEventDateTime + "</li><li>Event Address: " + indEventAddress + "</li><li><a href='" + indEventTicketURL + "'>Click Here to Buy Your Ticket Now!</a></li></ul>");
 

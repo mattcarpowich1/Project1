@@ -22,7 +22,6 @@ window.addToggle = function() {
   var artistRef = firebase.database().ref("users/" + user.uid + "/artists");
   artistRef.orderByChild("artist").equalTo(window.artistName).on("value", function(snapshot) {
     if (snapshot.val()) {
-      console.log("FUCK");
       $("#add").remove();
       $("#add_text").text("Remove Artist");
       $("$#add_holder").prepend('<i id="remove" class="fa fa-minus-circle" aria-hidden="true"></i>');
@@ -37,22 +36,12 @@ var artistList = {
     this.updateHTML();
   },
   deleteLI: function (artist) {
-    console.log(artist);
     var index = artistList.list.indexOf(artist);
-
-    console.log(artistList.list);
     
     if(index != -1) {
       artistList.list.splice(index, 1);
     }
 
-    console.log(artistList.list);
-
-    // for (var i = 0; i < artistList.list; i++) {
-    //   if (artist == artistList.list[i]) {
-    //     this.list.splice(i, 1);
-    //   }
-    // }
     this.updateHTML();
   },
   toString: function () {
@@ -128,7 +117,6 @@ $("#sign-up").on("click", function(event) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage);
     });
   } 
 
@@ -145,7 +133,7 @@ $("#topCornerButton").on("click", "#sign-out", function(event) {
   $("#txtPassword").val("");  
 });
 
-//TODO: capture Users search input and push it to users artist property
+
 $("#add").on("click", function(event) {
   var user = firebase.auth().currentUser;
 
@@ -166,15 +154,12 @@ $("#add").on("click", function(event) {
 $("#delete").on("click", function(event) {
   var user = firebase.auth().currentUser;
 
-  // artistList.deleteLI(window.artistName);
-
   var ref = firebase.database().ref('users/' + user.uid + '/artists');
   ref.orderByChild("artist").equalTo(window.artistName).on("child_added", function(snapshot) {
     var item = firebase.database().ref('users/' + user.uid + '/artists/' + snapshot.key);
     item.remove().then(function(){
-      console.log("Successful Removal");
     }).catch(function(error) {
-      console.log("Remove Failed: " + error.message);
+      return false;
     })
   });
   
@@ -189,16 +174,12 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
 
     var user = firebase.auth().currentUser;
 
-    // firebase.database().ref('users/' + user.uid).on("value", function(snapshot) {
-    //   artistList.updateList(snapshot.val().artist);
-    // }, function (errorObject) {
-    //   console.log("The read failed: " + errorObject.code);
-    // });
   } else {
-    console.log("not logged in");
+
     $("#topCornerButton").html("<a href='authentication.html'>Log In</a>");
     $("#current-user").text("");
     $("#sign-out").addClass('hide');
+
   }
 });
 

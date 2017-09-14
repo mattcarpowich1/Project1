@@ -41,8 +41,6 @@ $(function() {
 
     var user = firebase.auth().currentUser;
 
-    console.log(user);
-
       if(!(window.displayedOnce)) {
 
         window.displayedOnce = true;
@@ -79,8 +77,6 @@ $(function() {
 
   $("body").on("click", ".add", function(event) {
 
-    console.log("Add was clicked");
-
     var user = firebase.auth().currentUser;
 
     if (window.artistName) {
@@ -111,18 +107,10 @@ $(function() {
   $("body").on("click", ".remove", function(event) {
     var user = firebase.auth().currentUser;
 
-    console.log("remove was clicked");
-
-    // artistList.deleteLI(window.artistName);
-
     var ref = firebase.database().ref('users/' + user.uid + '/artists');
     ref.orderByChild("artist").equalTo(window.artistName).on("child_added", function(snapshot) {
       var item = firebase.database().ref('users/' + user.uid + '/artists/' + snapshot.key);
-      item.remove().then(function(){
-        console.log("Successful Removal");
-      }).catch(function(error) {
-        console.log("Remove Failed: " + error.message);
-      });
+      item.remove();
     });
 
     var index = window.artistList.indexOf(window.artistName);
