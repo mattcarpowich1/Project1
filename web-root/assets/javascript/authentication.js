@@ -76,7 +76,19 @@ $("#sign-in").on("click", function(event) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    if (error) {
+      $("#errorPass").text(error.message);
+      return false;
+    }
+  }).then(function(result) {
+    if (result) {
+      $(".after-form").show();
+      $(".form-holder").hide();
+    } else {
+      $("#errorPass").text("Invalid email/password");
+    }
   });
+
 
   //get user data from database
 
@@ -117,6 +129,13 @@ $("#sign-up").on("click", function(event) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+    }).then(function(result) {
+      if (result) {
+        $(".after-form").show();
+        $(".form-holder").hide();
+      } else {
+        return false;
+      }
     });
   } 
 
@@ -128,6 +147,7 @@ $("#sign-up").on("click", function(event) {
 
 //When there is a User logged in this handles sign out
 $("#topCornerButton").on("click", "#sign-out", function(event) {
+  $("#my_artists").hide();
   firebase.auth().signOut();
   $("#txtEmail").val("");
   $("#txtPassword").val("");  

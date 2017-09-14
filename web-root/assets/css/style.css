@@ -503,6 +503,25 @@ div #events, #awards, #top-songs {
   color: rgba(19, 18, 15, 0.61);
 }
 
+.after-form {
+  display: none;
+  margin: 0 auto;
+  margin-top: 40px;
+  background-color: rgba(70, 74, 78, .8);
+  padding: 15px;
+  color: white;
+  -webkit-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  -moz-box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+  box-shadow: 3px 3px 14px -2px rgba(0,0,0,0.48);
+}
+
+.after-form > * {
+  text-align: center;
+}
+
+.after-form a {
+  color: white;
+}
 
 
 @media screen and (max-width: 1199px) {
