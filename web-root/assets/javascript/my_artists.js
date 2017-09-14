@@ -63,7 +63,7 @@ $(function() {
       }
     
     } else {
-    	$("#info").show();
+    	$("#info").hide().delay(100).show();
       $("#topCornerButton").html("<a href='authentication.html' id='sign-out'>Log In</a>");
     }
 
