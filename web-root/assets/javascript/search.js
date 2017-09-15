@@ -205,7 +205,8 @@ $(function() {
           });
 
         // ajax call for events information
-        var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
+        // var eventsAPI = "zvvfvcjv5yh3mdw32ypf9dqn";
+        var eventsAPI = "eu8nxbkcsw8sbcqsbzzxqj5k";
         var replacedName = name.split(' ').join('-');
         var artistId = '';
 
